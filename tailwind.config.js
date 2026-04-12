@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#F0F9FF',
-        primary: '#0369A1',
+        background: '#F8FAFF',
+        primary: '#0EA5E9',
         secondary: '#38BDF8',
-        accent: '#16A34A',
-        foreground: '#0C4A6E',
-        muted: '#E7EFF5',
-        border: '#E0F2FE',
+        accent: '#22D3EE',
+        foreground: '#1E293B',
+        muted: '#F1F5F9',
+        border: '#E2E8F0',
       },
       fontFamily: {
         serif: ['Lora', 'Georgia', 'serif'],
