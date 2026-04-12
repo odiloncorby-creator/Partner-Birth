@@ -8,14 +8,14 @@ export default function TipCard({ tip, onSelect }) {
   return (
     <button
       onClick={() => onSelect(tip.id)}
-      className="flex items-center gap-4 w-full p-4 bg-white rounded-2xl shadow-sm border border-border text-left min-h-[72px] active:scale-[0.98] transition-transform"
+      className="flex items-center gap-4 w-full p-4 bg-white rounded-2xl shadow-sm border border-border text-left min-h-[72px] active:scale-[0.98] transition-transform cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
     >
       <div className="flex items-center justify-center w-12 h-12 rounded-full bg-muted shrink-0">
         <Icon size={22} className="text-primary" />
       </div>
       <div className="flex-1 min-w-0">
         <p className="font-semibold text-foreground font-serif">{tip.title}</p>
-        <p className="text-sm text-foreground/55 mt-0.5 truncate">{tip.summary}</p>
+        <p className="text-sm text-foreground/65 mt-0.5 line-clamp-2 leading-snug">{tip.summary}</p>
       </div>
       <ChevronRight size={18} className="text-foreground/30 shrink-0" />
     </button>

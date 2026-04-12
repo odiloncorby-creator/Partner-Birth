@@ -8,7 +8,7 @@ export default function Accordion({ title, content }) {
     <div className="border-b border-border last:border-0">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full py-4 text-left min-h-[44px]"
+        className="flex items-center justify-between w-full py-4 text-left min-h-[44px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 rounded"
         aria-expanded={open}
       >
         <span className="font-medium text-foreground pr-4 leading-snug">{title}</span>

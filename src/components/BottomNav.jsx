@@ -20,7 +20,7 @@ export default function BottomNav({ activeTab, onTabChange, isDark }) {
           <button
             key={id}
             onClick={() => onTabChange(id)}
-            className={`flex flex-1 flex-col items-center justify-center gap-1 py-2 min-h-[60px] transition-colors ${
+            className={`flex flex-1 flex-col items-center justify-center gap-1 py-2 min-h-[60px] transition-colors cursor-pointer focus-visible:outline-none focus-visible:bg-muted/20 ${
               isActive
                 ? isDark ? 'text-blue-400' : 'text-primary'
                 : isDark ? 'text-gray-500' : 'text-gray-400'

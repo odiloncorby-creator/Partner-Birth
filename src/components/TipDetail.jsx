@@ -12,7 +12,7 @@ export default function TipDetail({ tip, onBack }) {
       <div className="sticky top-0 z-10 bg-background/95 backdrop-blur border-b border-border px-4 py-3 flex items-center gap-3">
         <button
           onClick={onBack}
-          className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted -ml-2 min-h-[44px] min-w-[44px]"
+          className="flex items-center justify-center w-10 h-10 rounded-full hover:bg-muted active:bg-muted -ml-2 min-h-[44px] min-w-[44px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
           aria-label="Retour à la liste"
         >
           <ArrowLeft size={20} className="text-foreground" />
@@ -27,7 +27,7 @@ export default function TipDetail({ tip, onBack }) {
 
       {/* Résumé */}
       <div className="px-4 pt-5 pb-2">
-        <p className="text-sm text-foreground/55 leading-relaxed">{tip.summary}</p>
+        <p className="text-sm text-foreground/70 leading-relaxed">{tip.summary}</p>
       </div>
 
       {/* Accordéons */}
