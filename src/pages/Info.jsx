@@ -1,4 +1,4 @@
-import { Heart, AlertTriangle, Info } from 'lucide-react'
+import { Heart, AlertTriangle, Info, Code2 } from 'lucide-react'
 
 const APP_VERSION = '1.1.0'
 
@@ -48,6 +48,20 @@ export default function InfoPage() {
               </p>
             </div>
           </div>
+        </section>
+
+        {/* Crédit développeur */}
+        <section className="bg-white rounded-2xl border border-border shadow-sm p-5 mb-4">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center justify-center w-8 h-8 rounded-full bg-indigo-50">
+              <Code2 size={16} className="text-indigo-500" />
+            </div>
+            <h2 className="font-semibold text-foreground">Développeur</h2>
+          </div>
+          <p className="text-sm text-foreground/70 leading-relaxed">
+            Conçu et développé par{' '}
+            <span className="font-semibold text-indigo-500">odilon.code</span>
+          </p>
         </section>
 
         {/* Version */}
