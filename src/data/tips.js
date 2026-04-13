@@ -7,7 +7,7 @@ export const TIPS = [
     sections: [
       {
         title: 'Le gardien du temple',
-        content: 'Ton rôle principal n\'est pas de "gérer" l\'accouchement, mais de protéger l\'espace où elle donne naissance. Moins il y a d\'interruptions, de lumière vive, de voix inconnues — plus le corps de ta partenaire peut travailler. Tu es le filtre entre le monde extérieur et sa bulle.',
+        content: 'Ton rôle principal n\'est pas de "gérer" l\'accouchement, mais de protéger l\'espace où elle donne naissance. Moins il y a d\'interruptions, de lumière vive, de voix inconnues — plus le corps de ta partenaire peut travailler. Tu es le filtre entre le monde extérieur et sa bulle. À la maternité, c\'est toi qui gères les formalités d\'inscription pendant qu\'elle reste dans sa bulle. Entre les contractions, appui sacrum et soutien physique.',
       },
       {
         title: 'L\'ocytocine : l\'hormone qui fait tout',
@@ -80,8 +80,62 @@ export const TIPS = [
         title: 'Pendant le trajet',
         content: 'Signaler les dos-d\'âne à l\'avance pour qu\'elle se prépare. Éviter la musique forte. Si le travail s\'intensifie en route, appeler la maternité depuis la voiture. Si une contraction arrive à un feu, se garer plutôt que de forcer le départ.',
       },
+      {
+        title: 'Le choix du transport',
+        content: 'La voiture n\'est pas la seule option. Le taxi peut être préférable : pas de stress de conduite, tu es 100 % disponible pour elle. Prévoir plusieurs scénarios selon l\'heure (nuit, embouteillages, distance). L\'important c\'est le temps d\'arrivée — choisir le moyen le plus rapide et le plus calme selon la situation.',
+      },
     ],
     gyneco_tip: 'Le trajet en voiture est souvent plus difficile émotionnellement que physiquement. Elle quitte son espace sécurisant. Voix calme, conduite douce, présence.',
+  },
+  {
+    id: 'arrivee-maternite',
+    icon: 'Building2',
+    title: 'Arrivée à la maternité',
+    summary: 'Garder la bulle, gérer l\'admin, aménager la salle',
+    sections: [
+      {
+        title: 'Garder sa bulle en salle d\'attente',
+        content: 'Rester debout plutôt que s\'asseoir — éviter le regard des autres. Mettre ses écouteurs avec sa propre musique pour se concentrer. Se placer face à un mur pour limiter les stimuli visuels. Le partenaire s\'occupe de toutes les formalités d\'inscription et aide physiquement pendant les contractions.',
+      },
+      {
+        title: 'Examens et contractions',
+        content: 'La sage-femme examine entre deux contractions pour éviter l\'inconfort. Après l\'examen, se relever, se rhabiller et reprendre sa gestion respiratoire. Ne pas rester passive après un examen — reprendre le contrôle de sa respiration et de sa position.',
+      },
+      {
+        title: 'Aménager la salle',
+        content: 'Demander un ballon si monitoring requis — s\'asseoir dessus permet de poursuivre la gestion active du travail. Les capteurs peuvent être serrés tout en étant assise sur le ballon. Ajuster la lumière selon ses préférences : veilleuse, tamisée, ou lumière normale. Demander au personnel de parler doucement et de limiter les allées et venues. L\'ocytocine est favorisée par un environnement adapté au confort de chacune — exprimez clairement vos préférences.',
+      },
+    ],
+    gyneco_tip: 'L\'arrivée à la maternité est un moment de transition. Plus vous prenez en main votre environnement dès l\'entrée, plus le travail se poursuit efficacement. Le personnel est là pour respecter vos préférences — n\'hésitez pas à les exprimer.',
+  },
+  {
+    id: 'points-de-pression',
+    icon: 'Target',
+    title: 'Points de pression',
+    summary: '3 points pour atténuer la douleur des contractions',
+    sections: [
+      {
+        title: 'Le principe',
+        content: 'Le cerveau ne peut analyser qu\'une douleur prédominante à la fois. En provoquant une douleur localisée par pression sur des points précis (nerfs), on déclenche une libération d\'endorphines qui atténue la douleur de la contraction. Technique utilisable seule ou en complément d\'autres méthodes (souffle, massage sacrum). Maintenir la pression environ 1 minute — la durée d\'une contraction.',
+      },
+      {
+        title: 'Creux du V — main',
+        content: 'Dans le creux formé entre l\'os du pouce et l\'os de l\'index, côté index. Appuyer avec les deux pouces, légèrement dirigé vers l\'index, jusqu\'à ressentir une douleur vive localisée. Astuce : tourner l\'ongle du pouce vers l\'avant pour être stable. Maintenir pendant toute la contraction.',
+      },
+      {
+        title: 'Dessus du pied — entre 1er et 2e orteil',
+        content: 'Imaginer une ligne entre le 1er et le 2e orteil, suivre la courbe vers le haut du pied. Au terme de la courbe se trouve un creux, un point sensible. Appuyer fermement pendant la contraction (~1 minute). La douleur au pied diminue la perception de la contraction.',
+      },
+      {
+        title: 'Derrière la malléole — cheville',
+        content: 'Poser le petit doigt au début de la malléole (bosse de la cheville), placer les 4 doigts. Le pouce se positionne sur l\'os puis légèrement derrière pour atteindre le nerf. On peut utiliser un stylo pour une pression plus stable. La sensibilité varie selon les personnes.',
+      },
+      {
+        title: 'Conseils pratiques',
+        content: 'Marquer les points avec un stylo pour les repérer rapidement (gauche et droite). S\'entraîner avec le partenaire avant le travail pour automatiser le geste. Les points peuvent provoquer un petit bleu — le bénéfice dépasse l\'inconfort. Appuyer dès le début de la contraction et maintenir jusqu\'à la fin.',
+      },
+    ],
+    gyneco_tip: 'Les points de pression sont une technique complémentaire efficace. Entraînez-vous avant le jour J pour que le geste soit automatique quand les contractions arrivent.',
   },
   {
     id: 'pendant-le-travail',
@@ -103,11 +157,11 @@ export const TIPS = [
       },
       {
         title: 'L\'ambiance dans la salle',
-        content: 'Demander à la sage-femme de baisser les lumières. Mettre une musique douce si elle a une playlist préparée. Limiter les allées et venues. Couvrir ou éteindre les écrans affichant les données du monitoring si elles l\'angoissent.',
+        content: 'Demander à la sage-femme de baisser les lumières ou placer une veilleuse dans la salle. Demander que le personnel parle doucement, chuchote et limite les allées et venues. Mettre une musique douce si elle a une playlist préparée. Limiter les écrans affichant les données du monitoring si elles l\'angoissent. Important : c\'est la préférence individuelle qui compte — certaines préfèrent la lumière, d\'autres l\'obscurité. L\'ocytocine est favorisée par un environnement adapté au confort de chacune.',
       },
       {
         title: 'Le monitoring fœtal',
-        content: 'Les ceintures de monitoring n\'empêchent pas le mouvement. Elle peut marcher, se balancer, être à 4 pattes. Demander si un monitoring sans fil (télémétrie) est disponible dans la maternité — plus de liberté de mouvement.',
+        content: 'Les ceintures de monitoring n\'empêchent pas le mouvement. Elle peut marcher, se balancer, être à 4 pattes. Demander si un monitoring sans fil (télémétrie) est disponible. Si elle doit rester branchée, demander un ballon : s\'asseoir dessus pendant le monitoring évite la position allongée. Les capteurs peuvent être serrés tout en étant assise sur le ballon — ne pas hésiter à le demander, c\'est courant et réalisable.',
       },
     ],
     gyneco_tip: 'Un partenaire qui maintient le calme, le soutien actif et la mobilité peut réduire significativement la durée du travail actif. Votre rôle a un impact physiologique réel.',
@@ -151,7 +205,11 @@ export const TIPS = [
         title: 'Urgences : agir sans hésiter',
         content: 'Appuyer sur la sonnette IMMÉDIATEMENT et sans attendre si : cordon visible à la vulve (cordon prolabé), saignements soudains et abondants, bébé qui ne bouge plus, détresse ou perte de conscience. Ne pas chercher à comprendre — alerter le personnel et rester avec elle.',
       },
+      {
+        title: 'Accouchement à domicile — protocole d\'urgence',
+        content: 'Si le bébé arrive avant la maternité : garder son calme. Laisser la femme pousser naturellement — ne pas intervenir. Chercher des serviettes ou du linge propre. Quand le bébé naît, le poser directement sur le ventre ou la poitrine de la maman. Ne jamais couper le cordon ombilical — attendre les secours. Sécuriser la zone : bloquer le bord du lit, poser une serviette au sol. Appeler les pompiers (18) ou le SAMU (15) dès que la poussée est identifiée — plus tôt on appelle, plus ils ont de chances d\'arriver à temps.',
+      },
     ],
-    gyneco_tip: 'Le projet de naissance est un outil de communication, pas un contrat. B.R.A.I.N. permet de participer à la décision sans bloquer les soins urgents. Faites confiance à l\'équipe.',
+    gyneco_tip: 'Le projet de naissance est un outil de communication, pas un contrat. B.R.A.I.N. permet de participer à la décision sans bloquer les soins urgents. En cas d\'accouchement à domicile imprévu, l\'essentiel est de ne pas intervenir inutilement : le corps sait faire, votre rôle est de sécuriser et d\'appeler les secours.',
   },
 ]

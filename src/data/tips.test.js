@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { TIPS } from './tips'
 
 describe('TIPS data integrity', () => {
-  it('contient exactement 7 fiches', () => {
-    expect(TIPS).toHaveLength(7)
+  it('contient exactement 9 fiches', () => {
+    expect(TIPS).toHaveLength(9)
   })
 
   it('chaque fiche a tous les champs obligatoires', () => {
