@@ -14,6 +14,20 @@ export const REFLEX_CARDS = [
     detail: 'Bas du dos, sur le sacrum (le triangle osseux entre les fesses). Appuyer pendant toute la contraction, relâcher entre. Demande-lui si c\'est au bon endroit — ajuste.',
   },
   {
+    id: 'points-pression',
+    icon: 'Target',
+    title: 'Points de pression',
+    instruction: 'Appuyer fort sur un point pendant toute la contraction (~1 min).',
+    detail: '3 points : creux du V pouce/index (appuyer vers l\'index) · dessus du pied entre 1er/2e orteil (suivre la courbe, creux sensible) · derrière la malléole (pouce derrière l\'os). Marquer au stylo avant le travail.',
+  },
+  {
+    id: 'arrivee-maternite',
+    icon: 'Building2',
+    title: 'Arrivée maternité',
+    instruction: 'Protège sa bulle — tu gères l\'admin.',
+    detail: 'Écouteurs + musique · debout face au mur · toi = inscription et formalités · demander ballon si monitoring · ajuster lumière · personnel qui chuchote.',
+  },
+  {
     id: 'brain',
     icon: 'Brain',
     title: 'Méthode B.R.A.I.N.',
@@ -26,6 +40,13 @@ export const REFLEX_CARDS = [
     title: 'Mots d\'ancrage',
     instruction: 'Voix grave, phrases courtes, affirmatives.',
     detail: '"Expire." · "Relâche." · "C\'est bien." · "On y est." — Évite "Ça va ?" (elle devrait répondre). Préfère constater : "Je suis là."',
+  },
+  {
+    id: 'urgence-domicile',
+    icon: 'Home',
+    title: 'Accouchement domicile',
+    instruction: 'Laisser faire — ne pas couper le cordon — appeler les secours.',
+    detail: 'Serviettes propres · bébé sur le ventre de maman · sécuriser le bord du lit · appeler pompiers (18) ou SAMU (15) dès la poussée. Ne rien couper, les secours s\'en occupent.',
   },
   {
     id: 'urgence',

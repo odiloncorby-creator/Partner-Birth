@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import { REFLEX_CARDS } from './reflexCards'
 
 describe('REFLEX_CARDS data integrity', () => {
-  it('contient exactement 5 cartes', () => {
-    expect(REFLEX_CARDS).toHaveLength(5)
+  it('contient exactement 8 cartes', () => {
+    expect(REFLEX_CARDS).toHaveLength(8)
   })
 
   it('chaque carte a les champs obligatoires', () => {
