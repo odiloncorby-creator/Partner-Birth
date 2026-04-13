@@ -14,8 +14,10 @@ export const CHECKLISTS = [
       { id: 'pyjama', label: 'Pyjama bébé' },
       { id: 'bonnet', label: 'Bonnet bébé' },
       { id: 'turbulette', label: 'Turbulette / gigoteuse' },
-      { id: 'boules-quies', label: 'Boules quies (pour toi)' },
+      { id: 'boules-quies', label: 'Boules quies' },
       { id: 'lunettes-soleil', label: 'Lunettes de soleil' },
+      { id: 'ecouteurs', label: 'Écouteurs + playlist chargée' },
+      { id: 'stylo', label: 'Stylo (marquer les points de pression)' },
     ],
   },
   {
@@ -49,6 +51,18 @@ export const CHECKLISTS = [
       { id: 'veilleuse', label: 'Veilleuse' },
       { id: 'trousse', label: 'Trousse de toilette' },
       { id: 'coussin-allait', label: 'Coussin d\'allaitement' },
+    ],
+  },
+  {
+    id: 'organisation',
+    icon: 'ClipboardList',
+    title: 'Organisation logistique',
+    items: [
+      { id: 'numero-sf', label: 'Numéro sage-femme / consultante accessible' },
+      { id: 'projet-naissance', label: 'Projet de naissance rédigé' },
+      { id: 'plan-transport', label: 'Plan transport (taxi + itinéraire voiture)' },
+      { id: 'garde-aines', label: 'Plan garde aînés + personne référente' },
+      { id: 'fiche-urgences', label: 'Fiche contacts urgences (maternité, SAMU, sage-femme)' },
     ],
   },
 ]

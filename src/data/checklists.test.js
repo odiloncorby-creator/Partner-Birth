@@ -3,7 +3,7 @@ import { CHECKLISTS } from './checklists'
 
 describe('CHECKLISTS data integrity', () => {
   it('contient exactement 3 listes', () => {
-    expect(CHECKLISTS).toHaveLength(3)
+    expect(CHECKLISTS).toHaveLength(4)
   })
 
   it('chaque liste a les champs obligatoires', () => {
