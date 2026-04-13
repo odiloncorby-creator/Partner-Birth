@@ -4,6 +4,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export default function Bagages() {
   const [checked, setChecked] = useLocalStorage('pb-checklists', {})
+  const [customItems, setCustomItems] = useLocalStorage('pb-custom-items', {})
 
   const toggle = (listId, itemId) => {
     setChecked({
@@ -14,7 +15,9 @@ export default function Bagages() {
 
   const reset = (listId) => {
     const next = { ...checked }
-    CHECKLISTS.find((l) => l.id === listId)?.items.forEach((item) => {
+    const list = CHECKLISTS.find((l) => l.id === listId)
+    const allItems = [...(list?.items ?? []), ...(customItems[listId] ?? [])]
+    allItems.forEach((item) => {
       delete next[`${listId}::${item.id}`]
     })
     setChecked(next)
@@ -22,11 +25,38 @@ export default function Bagages() {
 
   const getListChecked = (listId) => {
     const result = {}
-    CHECKLISTS.find((l) => l.id === listId)?.items.forEach((item) => {
+    const list = CHECKLISTS.find((l) => l.id === listId)
+    const allItems = [...(list?.items ?? []), ...(customItems[listId] ?? [])]
+    allItems.forEach((item) => {
       result[item.id] = Boolean(checked[`${listId}::${item.id}`])
     })
     return result
   }
+
+  const addItem = (listId, label) => {
+    const id = `custom-${Date.now()}`
+    const listCustom = customItems[listId] ?? []
+    setCustomItems({
+      ...customItems,
+      [listId]: [...listCustom, { id, label }],
+    })
+  }
+
+  const removeItem = (listId, itemId) => {
+    const listCustom = customItems[listId] ?? []
+    setCustomItems({
+      ...customItems,
+      [listId]: listCustom.filter((item) => item.id !== itemId),
+    })
+    const next = { ...checked }
+    delete next[`${listId}::${itemId}`]
+    setChecked(next)
+  }
+
+  const getListWithCustomItems = (list) => ({
+    ...list,
+    items: [...list.items, ...(customItems[list.id] ?? [])],
+  })
 
   return (
     <div className="px-4 pt-6 pb-4">
@@ -36,10 +66,13 @@ export default function Bagages() {
         {CHECKLISTS.map((list) => (
           <ChecklistSection
             key={list.id}
-            list={list}
+            list={getListWithCustomItems(list)}
             checked={getListChecked(list.id)}
             onToggle={toggle}
             onReset={reset}
+            onAddItem={addItem}
+            onRemoveItem={removeItem}
+            customItemIds={new Set((customItems[list.id] ?? []).map((i) => i.id))}
           />
         ))}
       </div>

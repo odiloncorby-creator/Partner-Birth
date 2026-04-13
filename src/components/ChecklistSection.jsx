@@ -1,15 +1,23 @@
 import { useState } from 'react'
-import { Backpack, Baby, Luggage, ClipboardList, RotateCcw } from 'lucide-react'
+import { Backpack, Baby, Luggage, ClipboardList, RotateCcw, Plus, X } from 'lucide-react'
 
 const ICON_MAP = { Backpack, Baby, Luggage, ClipboardList }
 
-export default function ChecklistSection({ list, checked, onToggle, onReset }) {
+export default function ChecklistSection({ list, checked, onToggle, onReset, onAddItem, onRemoveItem, customItemIds }) {
   const Icon = ICON_MAP[list.icon] ?? Backpack
   const [confirmOpen, setConfirmOpen] = useState(false)
+  const [newLabel, setNewLabel] = useState('')
 
   const total = list.items.length
   const done = list.items.filter((item) => Boolean(checked[item.id])).length
   const percent = total > 0 ? Math.round((done / total) * 100) : 0
+
+  const handleAdd = () => {
+    const trimmed = newLabel.trim()
+    if (!trimmed) return
+    onAddItem(list.id, trimmed)
+    setNewLabel('')
+  }
 
   return (
     <div className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden">
@@ -48,39 +56,70 @@ export default function ChecklistSection({ list, checked, onToggle, onReset }) {
       <div className="divide-y divide-border">
         {list.items.map((item) => {
           const isChecked = Boolean(checked[item.id])
+          const isCustom = customItemIds?.has(item.id)
           return (
-            <button
-              key={item.id}
-              onClick={() => onToggle(list.id, item.id)}
-              className="flex items-center gap-3 w-full px-4 py-3 text-left min-h-[44px] transition-colors active:bg-muted/50 cursor-pointer focus-visible:outline-none focus-visible:bg-muted/30"
-            >
-              <div
-                className={`flex items-center justify-center w-5 h-5 rounded-full border-2 shrink-0 transition-colors ${
-                  isChecked ? 'bg-accent border-accent' : 'border-foreground/30'
-                }`}
+            <div key={item.id} className="flex items-center">
+              <button
+                onClick={() => onToggle(list.id, item.id)}
+                className="flex items-center gap-3 flex-1 px-4 py-3 text-left min-h-[44px] transition-colors active:bg-muted/50 cursor-pointer focus-visible:outline-none focus-visible:bg-muted/30"
               >
-                {isChecked && (
-                  <svg viewBox="0 0 12 10" fill="none" className="w-3 h-3">
-                    <path
-                      d="M1 5l3.5 3.5L11 1"
-                      stroke="white"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                )}
-              </div>
-              <span
-                className={`text-sm transition-colors ${
-                  isChecked ? 'line-through text-foreground/40' : 'text-foreground'
-                }`}
-              >
-                {item.label}
-              </span>
-            </button>
+                <div
+                  className={`flex items-center justify-center w-5 h-5 rounded-full border-2 shrink-0 transition-colors ${
+                    isChecked ? 'bg-accent border-accent' : 'border-foreground/30'
+                  }`}
+                >
+                  {isChecked && (
+                    <svg viewBox="0 0 12 10" fill="none" className="w-3 h-3">
+                      <path
+                        d="M1 5l3.5 3.5L11 1"
+                        stroke="white"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </div>
+                <span
+                  className={`text-sm transition-colors ${
+                    isChecked ? 'line-through text-foreground/40' : 'text-foreground'
+                  }`}
+                >
+                  {item.label}
+                </span>
+              </button>
+              {isCustom && (
+                <button
+                  onClick={() => onRemoveItem(list.id, item.id)}
+                  className="flex items-center justify-center w-10 h-10 mr-1 text-foreground/30 hover:text-red-500 transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400 rounded-full"
+                  aria-label={`Supprimer ${item.label}`}
+                >
+                  <X size={14} />
+                </button>
+              )}
+            </div>
           )
         })}
+      </div>
+
+      {/* Ajouter un item */}
+      <div className="px-4 py-3 border-t border-border flex items-center gap-2">
+        <input
+          type="text"
+          value={newLabel}
+          onChange={(e) => setNewLabel(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
+          placeholder="Ajouter un élément…"
+          className="flex-1 text-sm bg-transparent text-foreground placeholder:text-foreground/35 outline-none min-h-[44px]"
+        />
+        <button
+          onClick={handleAdd}
+          disabled={!newLabel.trim()}
+          className="flex items-center justify-center w-10 h-10 rounded-full text-primary hover:bg-muted transition-colors cursor-pointer disabled:opacity-30 disabled:cursor-default focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
+          aria-label="Ajouter"
+        >
+          <Plus size={18} />
+        </button>
       </div>
 
       {/* Confirmation inline reset */}
