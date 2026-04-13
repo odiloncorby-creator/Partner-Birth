@@ -1,7 +1,7 @@
-import { Shield, Package, Clock, Car, Heart, Activity, AlertCircle, ArrowLeft, Lightbulb } from 'lucide-react'
+import { Shield, Package, Clock, Car, Building2, Target, Heart, Activity, AlertCircle, ArrowLeft, Lightbulb } from 'lucide-react'
 import Accordion from './Accordion'
 
-const ICON_MAP = { Shield, Package, Clock, Car, Heart, Activity, AlertCircle }
+const ICON_MAP = { Shield, Package, Clock, Car, Building2, Target, Heart, Activity, AlertCircle }
 
 export default function TipDetail({ tip, onBack }) {
   const Icon = ICON_MAP[tip.icon] ?? Shield

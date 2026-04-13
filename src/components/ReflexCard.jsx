@@ -1,6 +1,6 @@
-import { Wind, Hand, Brain, MessageCircle, AlertTriangle } from 'lucide-react'
+import { Wind, Hand, Brain, MessageCircle, AlertTriangle, Target, Building2, Home } from 'lucide-react'
 
-const ICON_MAP = { Wind, Hand, Brain, MessageCircle, AlertTriangle }
+const ICON_MAP = { Wind, Hand, Brain, MessageCircle, AlertTriangle, Target, Building2, Home }
 
 export default function ReflexCard({ card }) {
   const Icon = ICON_MAP[card.icon] ?? AlertTriangle

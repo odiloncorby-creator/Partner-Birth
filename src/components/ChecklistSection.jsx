@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Backpack, Baby, Luggage, RotateCcw } from 'lucide-react'
+import { Backpack, Baby, Luggage, ClipboardList, RotateCcw } from 'lucide-react'
 
-const ICON_MAP = { Backpack, Baby, Luggage }
+const ICON_MAP = { Backpack, Baby, Luggage, ClipboardList }
 
 export default function ChecklistSection({ list, checked, onToggle, onReset }) {
   const Icon = ICON_MAP[list.icon] ?? Backpack

@@ -31,7 +31,7 @@ export default function Bagages() {
   return (
     <div className="px-4 pt-6 pb-4">
       <h1 className="text-2xl font-bold font-serif text-foreground mb-1">Bagages</h1>
-      <p className="text-sm text-foreground/55 mb-6">3 listes à cocher avant le départ</p>
+      <p className="text-sm text-foreground/55 mb-6">4 listes à cocher avant le départ</p>
       <div className="flex flex-col gap-4">
         {CHECKLISTS.map((list) => (
           <ChecklistSection

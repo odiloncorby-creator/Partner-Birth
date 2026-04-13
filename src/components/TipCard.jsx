@@ -1,6 +1,6 @@
-import { Shield, Package, Clock, Car, Heart, Activity, AlertCircle, ChevronRight } from 'lucide-react'
+import { Shield, Package, Clock, Car, Building2, Target, Heart, Activity, AlertCircle, ChevronRight } from 'lucide-react'
 
-const ICON_MAP = { Shield, Package, Clock, Car, Heart, Activity, AlertCircle }
+const ICON_MAP = { Shield, Package, Clock, Car, Building2, Target, Heart, Activity, AlertCircle }
 
 export default function TipCard({ tip, onSelect }) {
   const Icon = ICON_MAP[tip.icon] ?? Shield
