@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partner Birth — Maquettes redesign</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+  }
+
+  h1.page-title {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #38bdf8, #818cf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .page-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 40px;
+  }
+
+  /* Tab navigation entre écrans */
+  .screen-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .screen-tab {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(148,163,184,0.3);
+    background: transparent;
+    color: #94a3b8;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .screen-tab.active, .screen-tab:hover {
+    background: rgba(56,189,248,0.15);
+    border-color: #38bdf8;
+    color: #38bdf8;
+  }
+
+  /* Container phone mockup */
+  .phones-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .phone-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .phone-label {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .phone {
+    width: 320px;
+    min-height: 640px;
+    background: #f8fafc;
+    border-radius: 36px;
+    overflow: hidden;
+    box-shadow: 0 0 0 8px #1e293b, 0 0 0 10px #334155, 0 32px 64px rgba(0,0,0,0.6);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .phone.dark-phone {
+    background: #0f172a;
+  }
+
+  /* SCREEN SECTIONS */
+  .screen { display: none; width: 100%; }
+  .screen.active { display: flex; flex-direction: column; height: 100%; }
+
+  /* ===== COULEURS SYSTÈME ===== */
+  :root {
+    --sky: #38bdf8;
+    --indigo: #6366f1;
+    --cyan: #22d3ee;
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --white: #ffffff;
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+  }
+
+  /* ===== HEADER HERO ===== */
+  .hero-header {
+    background: linear-gradient(135deg, #0369a1 0%, #4338ca 100%);
+    padding: 52px 20px 28px;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .hero-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 24px;
+    background: #f8fafc;
+    border-radius: 24px 24px 0 0;
+  }
+  .hero-header.dark::after {
+    background: #0f172a;
+  }
+  .hero-title {
+    font-family: 'Lora', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+  .hero-subtitle {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.9);
+    margin-top: 10px;
+  }
+
+  /* ===== CONTENT AREA ===== */
+  .content {
+    flex: 1;
+    background: #f8fafc;
+    padding: 16px 16px 80px;
+    overflow-y: auto;
+  }
+  .content.dark-content {
+    background: #0f172a;
+  }
+
+  /* ===== TIPCARD ===== */
+  .tip-card {
+    background: white;
+    border-radius: 16px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.04);
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+  .tip-card:active { transform: scale(0.98); }
+  .tip-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .tip-icon.sky { background: #e0f2fe; color: #0369a1; }
+  .tip-icon.indigo { background: #e0e7ff; color: #4338ca; }
+  .tip-icon.cyan { background: #cffafe; color: #0e7490; }
+  .tip-icon.violet { background: #ede9fe; color: #7c3aed; }
+  .tip-icon.rose { background: #ffe4e6; color: #be123c; }
+  .tip-icon.amber { background: #fef3c7; color: #d97706; }
+  .tip-text { flex: 1; min-width: 0; }
+  .tip-title {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 2px;
+  }
+  .tip-summary {
+    font-size: 0.72rem;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tip-chevron { color: #94a3b8; font-size: 1rem; }
+
+  /* ===== CHECKLIST CARD ===== */
+  .checklist-card {
+    background: white;
+    border-radius: 20px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .checklist-header {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .checklist-header-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .checklist-title {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    flex: 1;
+  }
+  .checklist-count {
+    font-size: 0.75rem;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .progress-bar {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #22d3ee, #38bdf8);
+    border-radius: 6px;
+    transition: width 0.3s;
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-top: 1px solid #f8fafc;
+  }
+  .check-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #cbd5e1;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .check-circle.checked {
+    background: #22d3ee;
+    border-color: #22d3ee;
+    color: white;
+    font-size: 0.65rem;
+  }
+  .item-label {
+    font-size: 0.8rem;
+    color: #334155;
+  }
+  .item-label.checked-label {
+    text-decoration: line-through;
+    color: #94a3b8;
+  }
+
+  /* ===== MODE J (dark glassmorphism) ===== */
+  .mode-j-header {
+    background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 60%, #0c1a3b 100%);
+    padding: 52px 20px 28px;
+    position: relative;
+  }
+  .mode-j-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 24px;
+    background: #0f172a;
+    border-radius: 24px 24px 0 0;
+  }
+  .mode-j-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(99,102,241,0.25);
+    border: 1px solid rgba(99,102,241,0.4);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    color: #a5b4fc;
+    margin-bottom: 10px;
+  }
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #818cf8;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .reflex-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 16px;
+    padding: 14px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .reflex-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(99,102,241,0.2);
+    border: 1px solid rgba(99,102,241,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+  .reflex-title {
+    font-family: 'Lora', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #e0e7ff;
+    margin-bottom: 3px;
+  }
+  .reflex-text {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    line-height: 1.4;
+  }
+  .reflex-text strong { color: #a5b4fc; }
+
+  /* ===== CALENDRIER ===== */
+  .countdown-card {
+    background: linear-gradient(135deg, #0369a1, #4338ca);
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-bottom: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .countdown-card::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+  }
+  .countdown-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .countdown-j {
+    font-family: 'Lora', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: white;
+    line-height: 1;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .countdown-sublabel {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 14px;
+  }
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.75rem;
+    color: white;
+  }
+  .phase-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fcd34d;
+  }
+
+  .actions-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .actions-header {
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .action-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-top: 1px solid #f8fafc;
+    font-size: 0.8rem;
+    color: #334155;
+  }
+  .action-item:first-of-type { border-top: none; }
+  .action-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #e0f2fe;
+    border: 1px solid #38bdf8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    color: #0369a1;
+    flex-shrink: 0;
+  }
+
+  .timeline-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-top: 1px solid #f8fafc;
+    position: relative;
+  }
+  .timeline-item:first-child { border-top: none; }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: 4px;
+  }
+  .timeline-dot.done { background: #22d3ee; }
+  .timeline-dot.current {
+    background: #f59e0b;
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.25);
+  }
+  .timeline-dot.future { background: #e2e8f0; }
+  .timeline-text { flex: 1; }
+  .timeline-phase {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #0f172a;
+  }
+  .timeline-phase.future-text { color: #94a3b8; }
+  .timeline-days {
+    font-size: 0.68rem;
+    color: #94a3b8;
+  }
+  .timeline-status {
+    font-size: 0.68rem;
+    color: #22d3ee;
+    font-weight: 600;
+  }
+  .timeline-status.current-status { color: #f59e0b; }
+
+  /* ===== SETUP TERME ===== */
+  .setup-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px 20px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .setup-icon {
+    font-size: 2.5rem;
+    margin-bottom: 14px;
+  }
+  .setup-title {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .setup-text {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .date-input {
+    width: 100%;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    color: #0f172a;
+    margin-bottom: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .date-input:focus { border-color: #38bdf8; }
+  .btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, #0369a1, #4338ca);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .privacy-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    margin-top: 14px;
+  }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    background: #1e293b;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 4px;
+    cursor: pointer;
+    position: relative;
+  }
+  .nav-icon {
+    font-size: 1.1rem;
+    color: #475569;
+    transition: color 0.2s;
+  }
+  .nav-item.active .nav-icon { color: #38bdf8; }
+  .nav-label {
+    font-size: 0.6rem;
+    color: #475569;
+    font-weight: 500;
+  }
+  .nav-item.active .nav-label { color: #38bdf8; }
+  .nav-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #38bdf8;
+    position: absolute;
+    bottom: 2px;
+    opacity: 0;
+  }
+  .nav-item.active .nav-dot { opacity: 1; }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+    margin: 16px 0 8px;
+  }
+
+  /* Annotation arrows */
+  .annotation {
+    font-size: 0.7rem;
+    color: #38bdf8;
+    font-style: italic;
+    margin: 4px 0 8px 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .annotation::before { content: '↑'; font-style: normal; }
+
+  /* COMPARE layout */
+  .compare-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">Partner Birth — Maquettes redesign</h1>
+<p class="page-subtitle">Cliquer sur un onglet pour voir chaque écran • Design : Bleu modernisé + Calendrier J-X</p>
+
+<div class="screen-tabs">
+  <button class="screen-tab active" onclick="showScreen('prepare')">Préparer</button>
+  <button class="screen-tab" onclick="showScreen('bagages')">Bagages</button>
+  <button class="screen-tab" onclick="showScreen('calendrier-setup')">Calendrier (saisie)</button>
+  <button class="screen-tab" onclick="showScreen('calendrier')">Calendrier (actif)</button>
+  <button class="screen-tab" onclick="showScreen('modej')">Mode J</button>
+</div>
+
+<div class="phones-row">
+
+  <!-- ====== ÉCRAN : PRÉPARER ====== -->
+  <div id="screen-prepare" class="phone-wrap" style="display:flex">
+    <div class="compare-label">Nouvelle version</div>
+    <div class="phone">
+      <!-- Hero header -->
+      <div class="hero-header">
+        <div class="hero-badge">📖 Guide accompagnant</div>
+        <div class="hero-title" style="margin-top:8px">Préparer</div>
+        <div class="hero-subtitle">7 fiches essentielles pour être au top</div>
+      </div>
+      <!-- Content -->
+      <div class="content" style="padding-top: 20px;">
+        <div class="tip-card">
+          <div class="tip-icon sky">🛡</div>
+          <div class="tip-text">
+            <div class="tip-title">Ton rôle</div>
+            <div class="tip-summary">Protecteur, soutien, présence active</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon indigo">📦</div>
+          <div class="tip-text">
+            <div class="tip-title">Préparation</div>
+            <div class="tip-summary">Tout anticiper avant le grand jour</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon cyan">⏰</div>
+          <div class="tip-text">
+            <div class="tip-title">Quand partir</div>
+            <div class="tip-summary">Les signes qui ne trompent pas</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon violet">🚗</div>
+          <div class="tip-text">
+            <div class="tip-title">Le départ</div>
+            <div class="tip-summary">Rester calme et efficace</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon rose">❤️</div>
+          <div class="tip-text">
+            <div class="tip-title">Pendant le travail</div>
+            <div class="tip-summary">Accompagner, masser, encourager</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon sky">📊</div>
+          <div class="tip-text">
+            <div class="tip-title">La péridurale</div>
+            <div class="tip-summary">Ce qui change, ce que vous faites</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon amber">⚠️</div>
+          <div class="tip-text">
+            <div class="tip-title">Si ça change</div>
+            <div class="tip-summary">Méthode B.R.A.I.N. et urgences</div>
+          </div>
+          <div class="tip-chevron">›</div>
+        </div>
+      </div>
+      <!-- Bottom nav -->
+      <div class="bottom-nav">
+        <div class="nav-item active">
+          <div class="nav-icon">📖</div>
+          <div class="nav-label">Préparer</div>
+          <div class="nav-dot"></div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">🧳</div>
+          <div class="nav-label">Sacs</div>
+          <div class="nav-dot"></div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">📅</div>
+          <div class="nav-label">Terme</div>
+          <div class="nav-dot"></div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">🌙</div>
+          <div class="nav-label">Mode J</div>
+          <div class="nav-dot"></div>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">ℹ</div>
+          <div class="nav-label">Info</div>
+          <div class="nav-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ÉCRAN : BAGAGES ====== -->
+  <div id="screen-bagages" class="phone-wrap" style="display:none">
+    <div class="compare-label">Nouvelle version</div>
+    <div class="phone">
+      <div class="hero-header">
+        <div class="hero-badge">🧳 Check-lists</div>
+        <div class="hero-title" style="margin-top:8px">Vos sacs</div>
+        <div class="hero-subtitle">3 listes • 31 choses à ne pas oublier</div>
+      </div>
+      <div class="content" style="padding-top: 20px;">
+
+        <!-- Sac 1 -->
+        <div class="checklist-card">
+          <div class="checklist-header">
+            <div class="checklist-header-top">
+              <div class="tip-icon sky" style="width:32px;height:32px;font-size:0.9rem">🎒</div>
+              <div class="checklist-title">Salle de naissance</div>
+              <div class="checklist-count">5 / 12</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 42%"></div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle checked">✓</div>
+            <div class="item-label checked-label">Eau (1,5L)</div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle checked">✓</div>
+            <div class="item-label checked-label">Snacks</div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle checked">✓</div>
+            <div class="item-label checked-label">Téléphone chargé + câble</div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle"></div>
+            <div class="item-label">Carnet de maternité</div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle"></div>
+            <div class="item-label">Carte vitale</div>
+          </div>
+        </div>
+
+        <!-- Sac 2 -->
+        <div class="checklist-card">
+          <div class="checklist-header">
+            <div class="checklist-header-top">
+              <div class="tip-icon violet" style="width:32px;height:32px;font-size:0.9rem">👶</div>
+              <div class="checklist-title">Valise bébé</div>
+              <div class="checklist-count">0 / 9</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle"></div>
+            <div class="item-label">Bodys × 3</div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle"></div>
+            <div class="item-label">Pyjamas × 2</div>
+          </div>
+        </div>
+
+        <!-- Sac 3 -->
+        <div class="checklist-card">
+          <div class="checklist-header">
+            <div class="checklist-header-top">
+              <div class="tip-icon rose" style="width:32px;height:32px;font-size:0.9rem">🌸</div>
+              <div class="checklist-title">Valise maman</div>
+              <div class="checklist-count">2 / 10</div>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 20%"></div>
+            </div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle checked">✓</div>
+            <div class="item-label checked-label">Pyjama ouverture devant</div>
+          </div>
+          <div class="checklist-item">
+            <div class="check-circle"></div>
+            <div class="item-label">Coussin d'allaitement</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon">📖</div><div class="nav-label">Préparer</div><div class="nav-dot"></div></div>
+        <div class="nav-item active"><div class="nav-icon">🧳</div><div class="nav-label">Sacs</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">📅</div><div class="nav-label">Terme</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">🌙</div><div class="nav-label">Mode J</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">ℹ</div><div class="nav-label">Info</div><div class="nav-dot"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ÉCRAN : CALENDRIER SETUP ====== -->
+  <div id="screen-calendrier-setup" class="phone-wrap" style="display:none">
+    <div class="compare-label">Premier lancement</div>
+    <div class="phone">
+      <div class="hero-header">
+        <div class="hero-badge">📅 Votre compte à rebours</div>
+        <div class="hero-title" style="margin-top:8px">Terme</div>
+        <div class="hero-subtitle">Personnalisez votre suivi</div>
+      </div>
+      <div class="content" style="padding-top: 20px; display:flex; flex-direction:column; justify-content: center;">
+        <div class="setup-card">
+          <div class="setup-icon">📅</div>
+          <div class="setup-title">Quelle est votre date de terme ?</div>
+          <div class="setup-text">
+            En entrant la date prévue d'accouchement, l'app calcule automatiquement J-X et vous guide selon la phase où vous êtes.
+          </div>
+          <input type="date" class="date-input" value="2026-04-18">
+          <button class="btn-primary">Enregistrer ma date</button>
+          <div class="privacy-note">
+            🔒 Stockée uniquement sur cet appareil
+          </div>
+        </div>
+        <div style="font-size:0.72rem; color:#94a3b8; text-align:center; line-height:1.6; padding: 0 8px;">
+          Vous pourrez modifier cette date à tout moment depuis l'écran Terme.
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon">📖</div><div class="nav-label">Préparer</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">🧳</div><div class="nav-label">Sacs</div><div class="nav-dot"></div></div>
+        <div class="nav-item active"><div class="nav-icon">📅</div><div class="nav-label">Terme</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">🌙</div><div class="nav-label">Mode J</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">ℹ</div><div class="nav-label">Info</div><div class="nav-dot"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ÉCRAN : CALENDRIER ACTIF ====== -->
+  <div id="screen-calendrier" class="phone-wrap" style="display:none">
+    <div class="compare-label">Compte à rebours actif (exemple J-6)</div>
+    <div class="phone">
+      <div class="hero-header">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+          <div>
+            <div class="hero-badge">📅 Terme · 18 avr. 2026</div>
+            <div class="hero-title" style="margin-top:8px">Terme</div>
+            <div class="hero-subtitle">Votre compte à rebours personnel</div>
+          </div>
+          <div style="margin-top: 38px; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 6px 8px; font-size: 0.75rem; color: white; cursor:pointer;">✎</div>
+        </div>
+      </div>
+      <div class="content" style="padding-top: 20px;">
+
+        <!-- Countdown hero -->
+        <div class="countdown-card">
+          <div class="countdown-j">J &minus; 6</div>
+          <div class="countdown-sublabel">6 jours avant le grand jour</div>
+          <div class="phase-badge">
+            <div class="phase-dot"></div>
+            Dernière ligne droite
+          </div>
+        </div>
+
+        <!-- Actions prioritaires -->
+        <div class="section-title">À faire maintenant</div>
+        <div class="actions-card">
+          <div class="action-item">
+            <div class="action-check">✓</div>
+            Vérifier le contenu des sacs
+          </div>
+          <div class="action-item">
+            <div class="action-check">✓</div>
+            GPS maternité + parking testé
+          </div>
+          <div class="action-item">
+            <div class="action-check">✓</div>
+            Numéro gynéco enregistré
+          </div>
+          <div class="action-item">
+            <div class="action-check">✓</div>
+            Congé posé, dispo 24h/24
+          </div>
+          <div class="action-item">
+            <div class="action-check">✓</div>
+            Relire Mode J avant le soir
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="section-title">Toutes les phases</div>
+        <div class="timeline-card">
+          <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase">Prépa active</div>
+              <div class="timeline-days">J-42 · passé</div>
+            </div>
+            <div class="timeline-status">✓</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase">Préparer les sacs</div>
+              <div class="timeline-days">J-30 · passé</div>
+            </div>
+            <div class="timeline-status">✓</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot done"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase">Checks finaux</div>
+              <div class="timeline-days">J-14 · passé</div>
+            </div>
+            <div class="timeline-status">✓</div>
+          </div>
+          <div class="timeline-item" style="background: #fffbeb;">
+            <div class="timeline-dot current"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase">Dernière ligne droite</div>
+              <div class="timeline-days">J-7 → maintenant</div>
+            </div>
+            <div class="timeline-status current-status">→ Vous</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot future"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase future-text">Ça y est presque</div>
+              <div class="timeline-days">J-3</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot future"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase future-text">Le grand jour !</div>
+              <div class="timeline-days">J · 18 avr.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot future"></div>
+            <div class="timeline-text">
+              <div class="timeline-phase future-text">Post-partum</div>
+              <div class="timeline-days">J+1 → J+14</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon">📖</div><div class="nav-label">Préparer</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">🧳</div><div class="nav-label">Sacs</div><div class="nav-dot"></div></div>
+        <div class="nav-item active"><div class="nav-icon">📅</div><div class="nav-label">Terme</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">🌙</div><div class="nav-label">Mode J</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">ℹ</div><div class="nav-label">Info</div><div class="nav-dot"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== ÉCRAN : MODE J ====== -->
+  <div id="screen-modej" class="phone-wrap" style="display:none">
+    <div class="compare-label">Nouvelle version (dark glass)</div>
+    <div class="phone dark-phone">
+      <div class="mode-j-header">
+        <div class="mode-j-badge"><div class="pulse-dot"></div> Salle de naissance</div>
+        <div class="hero-title" style="color:white; margin-top:6px">Mode J</div>
+        <div class="hero-subtitle" style="color: rgba(255,255,255,0.6)">Réflexes instantanés</div>
+      </div>
+      <div class="content dark-content" style="padding-top: 20px;">
+
+        <div class="reflex-card">
+          <div class="reflex-icon">💨</div>
+          <div>
+            <div class="reflex-title">Souffle miroir</div>
+            <div class="reflex-text">Soufflez <strong>lentement</strong> face à elle. Elle va naturellement vous imiter et ralentir sa respiration.</div>
+          </div>
+        </div>
+
+        <div class="reflex-card">
+          <div class="reflex-icon">✋</div>
+          <div>
+            <div class="reflex-title">Massage sacrum</div>
+            <div class="reflex-text">Paume au creux du bas du dos, <strong>pression ferme et circulaire</strong> pendant la contraction.</div>
+          </div>
+        </div>
+
+        <div class="reflex-card">
+          <div class="reflex-icon">🧠</div>
+          <div>
+            <div class="reflex-title">Méthode B.R.A.I.N.</div>
+            <div class="reflex-text"><strong>B</strong>énéfices · <strong>R</strong>isques · <strong>A</strong>lternatives · <strong>I</strong>ntuition · <strong>N</strong>on ou plus tard</div>
+          </div>
+        </div>
+
+        <div class="reflex-card">
+          <div class="reflex-icon">💬</div>
+          <div>
+            <div class="reflex-title">Mots d'ancrage</div>
+            <div class="reflex-text">Répétez doucement : <strong>"Tu gères."</strong> ou <strong>"Je suis là."</strong> — voix basse, calme, régulière.</div>
+          </div>
+        </div>
+
+        <div class="reflex-card" style="border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.08);">
+          <div class="reflex-icon" style="background: rgba(239,68,68,0.2); border-color: rgba(239,68,68,0.3);">🚨</div>
+          <div>
+            <div class="reflex-title" style="color: #fca5a5">Si urgence</div>
+            <div class="reflex-text">Appelez la sage-femme <strong>immédiatement</strong>. Ne quittez pas la salle. Restez visible et calme.</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item"><div class="nav-icon">📖</div><div class="nav-label">Préparer</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">🧳</div><div class="nav-label">Sacs</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">📅</div><div class="nav-label">Terme</div><div class="nav-dot"></div></div>
+        <div class="nav-item active"><div class="nav-icon">🌙</div><div class="nav-label">Mode J</div><div class="nav-dot"></div></div>
+        <div class="nav-item"><div class="nav-icon">ℹ</div><div class="nav-label">Info</div><div class="nav-dot"></div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showScreen(name) {
+  // Hide all screens
+  document.querySelectorAll('.phone-wrap').forEach(el => el.style.display = 'none');
+  // Show selected
+  document.getElementById('screen-' + name).style.display = 'flex';
+  // Update tabs
+  document.querySelectorAll('.screen-tab').forEach(el => el.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

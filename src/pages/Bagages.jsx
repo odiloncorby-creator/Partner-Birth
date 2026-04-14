@@ -1,6 +1,7 @@
 import { CHECKLISTS } from '../data/checklists'
 import ChecklistSection from '../components/ChecklistSection'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import { Luggage } from 'lucide-react'
 
 export default function Bagages() {
   const [checked, setChecked] = useLocalStorage('pb-checklists', {})
@@ -58,23 +59,37 @@ export default function Bagages() {
     items: [...list.items, ...(customItems[list.id] ?? [])],
   })
 
+  const totalItems = CHECKLISTS.reduce((sum, l) => sum + l.items.length, 0)
+
   return (
-    <div className="px-4 pt-6 pb-4">
-      <h1 className="text-2xl font-bold font-serif text-foreground mb-1">Bagages</h1>
-      <p className="text-sm text-foreground/55 mb-6">4 listes à cocher avant le départ</p>
-      <div className="flex flex-col gap-4">
-        {CHECKLISTS.map((list) => (
-          <ChecklistSection
-            key={list.id}
-            list={getListWithCustomItems(list)}
-            checked={getListChecked(list.id)}
-            onToggle={toggle}
-            onReset={reset}
-            onAddItem={addItem}
-            onRemoveItem={removeItem}
-            customItemIds={new Set((customItems[list.id] ?? []).map((i) => i.id))}
-          />
-        ))}
+    <div className="min-h-screen bg-background">
+      {/* Hero header */}
+      <div className="hero-gradient px-4 pt-12 pb-8">
+        <div className="flex items-center gap-3 mb-1">
+          <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-white/15">
+            <Luggage size={20} className="text-white" />
+          </div>
+          <h1 className="text-2xl font-bold font-serif text-white">Vos sacs</h1>
+        </div>
+        <p className="text-sm text-sky-100/70 ml-13">4 listes · {totalItems} choses à ne pas oublier</p>
+      </div>
+
+      {/* Content */}
+      <div className="bg-background rounded-t-3xl -mt-4 px-4 pt-5 pb-4 relative z-10">
+        <div className="flex flex-col gap-4">
+          {CHECKLISTS.map((list) => (
+            <ChecklistSection
+              key={list.id}
+              list={getListWithCustomItems(list)}
+              checked={getListChecked(list.id)}
+              onToggle={toggle}
+              onReset={reset}
+              onAddItem={addItem}
+              onRemoveItem={removeItem}
+              customItemIds={new Set((customItems[list.id] ?? []).map((i) => i.id))}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )
