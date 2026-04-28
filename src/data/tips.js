@@ -212,4 +212,44 @@ export const TIPS = [
     ],
     gyneco_tip: 'Le projet de naissance est un outil de communication, pas un contrat. B.R.A.I.N. permet de participer à la décision sans bloquer les soins urgents. En cas d\'accouchement à domicile imprévu, l\'essentiel est de ne pas intervenir inutilement : le corps sait faire, votre rôle est de sécuriser et d\'appeler les secours.',
   },
+  {
+    id: 'phases-travail',
+    icon: 'Waves',
+    title: 'Les phases du travail',
+    summary: 'Reconnaître chaque phase pour répondre au bon moment',
+    sections: [
+      {
+        title: 'Travail préliminaire',
+        content:
+          'Elle peut encore parler, se pose des questions, cherche du réconfort. Les contractions sont irrégulières. Ce n\'est pas encore le moment de partir — observer, accompagner, rester calme.',
+      },
+      {
+        title: 'Travail actif',
+        content:
+          'Les contractions deviennent intenses et régulières. Elle ferme les yeux ~30 secondes, impossible de parler pendant une contraction. Aucun doute quand la phrase est : "On part, on y va." Bruit guttural, air instinctif, plus de questions : c\'est le moment. Regarder la montre — contractions toutes les 5 minutes → on part. (Prendre sabots + trench s\'il pleut.)',
+      },
+      {
+        title: 'Phase de désespérance',
+        content:
+          'Elle peut prononcer des mots très forts — paroles morbides, sentiment d\'abandon. Ce n\'est pas un appel à l\'aide ordinaire : c\'est le signe que la naissance est imminente. Ne pas gérer, ne pas compatir. Rassurer dans la puissance. Phrases à dire : "Tu es puissante." · "Tu es en train de le faire." · "Ça veut dire que c\'est imminent." Si cet appel à l\'aide apparaît en phase préliminaire : envisager la péridurale.',
+      },
+      {
+        title: 'Phase de quiétude',
+        content:
+          'Le corps marque une pause. Les contractions s\'arrêtent. Elle peut s\'endormir quelques minutes. C\'est une parenthèse dans l\'effort — ne pas paniquer. Important : cette phase n\'arrive pas systématiquement. Si elle n\'apparaît pas, c\'est normal. Si elle arrive, c\'est normal aussi.',
+      },
+      {
+        title: 'Phase de poussée',
+        content:
+          'Dernière ligne droite avant l\'arrivée du bébé. Les soignants guident les efforts de poussée. Accompagner, encourager. Durée maximale environ une heure.',
+      },
+      {
+        title: 'Délivrance du placenta',
+        content:
+          'Dernière étape après la naissance du bébé. Le corps expulse le placenta — cela fait partie du processus et peut prendre quelques minutes. Rester présent, ne pas être surpris. C\'est la fin.',
+      },
+    ],
+    gyneco_tip:
+      'L\'accompagnant qui connaît les phases ne panique pas — il agit juste. La phase de désespérance surprend souvent les partenaires qui ne l\'ont pas anticipée : savoir qu\'elle signifie "c\'est imminent" change tout.',
+  },
 ]
