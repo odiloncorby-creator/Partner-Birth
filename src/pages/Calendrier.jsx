@@ -80,7 +80,7 @@ function MilestoneRow({ milestone, isActive, isPast }) {
   )
 }
 
-export default function Calendrier() {
+export default function Calendrier({ onStartEnDirect }) {
   const [termeDate, setTermeDate] = useLocalStorage('pb-terme', '')
   const [editing, setEditing] = useState(false)
   const [inputValue, setInputValue] = useState(termeDate)
@@ -204,6 +204,25 @@ export default function Calendrier() {
                 <span className="text-sm text-slate-300 text-center">{currentMilestone.title}</span>
               </div>
             )}
+          </div>
+        </div>
+
+        {/* Bloc activation En direct */}
+        <div
+          className="rounded-3xl overflow-hidden mb-4"
+          style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c1a3a 100%)' }}
+        >
+          <div className="px-6 py-5 flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-xl font-bold font-serif text-white">C'est parti !</h2>
+              <p className="text-sm text-slate-400 mt-0.5">Bébé arrive, à toi de jouer</p>
+            </div>
+            <button
+              onClick={onStartEnDirect}
+              className="shrink-0 px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-white font-semibold text-sm transition-all active:scale-[0.98] shadow-lg whitespace-nowrap"
+            >
+              Démarrer →
+            </button>
           </div>
         </div>
 
