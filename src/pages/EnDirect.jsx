@@ -104,6 +104,9 @@ function ContractionCounter() {
 const QUICK_CHECKS = [
   'Sac prêt',
   'Transport validé',
+  'Maternité appelée',
+  'Formalités d\'arrivée gérées (toi)',
+  'Lumière et ambiance salle ajustée',
 ]
 
 function OnboardingScreen({ onDismiss }) {
