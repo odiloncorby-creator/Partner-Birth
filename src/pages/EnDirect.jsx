@@ -102,11 +102,8 @@ function ContractionCounter() {
 }
 
 const QUICK_CHECKS = [
-  'Sac dans la voiture',
-  'GPS programmé vers la maternité',
-  'Maternité appelée',
-  'Formalités d\'arrivée gérées (toi)',
-  'Lumière et ambiance salle ajustées',
+  'Sac prêt',
+  'Transport validé',
 ]
 
 function OnboardingScreen({ onDismiss }) {

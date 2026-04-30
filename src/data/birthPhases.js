@@ -17,7 +17,7 @@ export const BIRTH_PHASES = [
     id: 'desesperance',
     label: 'Phase de désespérance',
     signal: 'Mots très forts, paroles morbides. Air instinctif, sauvage.',
-    action: 'Rassurer dans la puissance. La naissance est imminente.',
+    action: 'Rassurer. Ne pas gérer — juste être là. La naissance est imminente.',
     words: '"Tu es puissante." · "Tu es en train de le faire." · "Ça veut dire que c\'est imminent."',
   },
   {
