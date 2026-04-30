@@ -5,6 +5,102 @@ import { REFLEX_CARDS } from '../data/reflexCards'
 import ReflexCard from '../components/ReflexCard'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 
+function formatInterval(ms) {
+  const totalSec = Math.round(ms / 1000)
+  const min = Math.floor(totalSec / 60)
+  const sec = totalSec % 60
+  if (min === 0) return `${sec} s`
+  if (sec === 0) return `${min} min`
+  return `${min} min ${sec}`
+}
+
+function ContractionCounter() {
+  const [taps, setTaps] = useState([])
+
+  const handleTap = () => setTaps((prev) => [...prev, Date.now()])
+
+  const intervals = []
+  for (let i = 1; i < taps.length; i++) intervals.push(taps[i] - taps[i - 1])
+
+  const lastInterval = intervals.at(-1) ?? null
+  const recentIntervals = intervals.slice(-5)
+  const avgInterval =
+    recentIntervals.length >= 2
+      ? recentIntervals.reduce((a, b) => a + b, 0) / recentIntervals.length
+      : null
+
+  const isUrgent = avgInterval !== null && avgInterval < 5 * 60 * 1000
+
+  return (
+    <div className="rounded-2xl border border-slate-700/50 bg-slate-800/20 p-4">
+      <button
+        onClick={handleTap}
+        className="w-full py-5 rounded-xl border-2 border-slate-600 bg-slate-800/40 hover:border-cyan-600/50 hover:bg-cyan-500/5 active:scale-[0.97] active:border-cyan-500 active:bg-cyan-500/15 transition-all select-none"
+      >
+        <div className="text-center">
+          <p className="text-2xl mb-1">👊</p>
+          <p className="text-sm font-semibold text-slate-200">
+            {taps.length === 0 ? 'Taper à chaque début de contraction' : 'Contraction !'}
+          </p>
+          {taps.length > 0 && (
+            <p className="text-xs text-slate-500 mt-0.5">
+              {taps.length} enregistrée{taps.length > 1 ? 's' : ''}
+            </p>
+          )}
+        </div>
+      </button>
+
+      {taps.length >= 2 && (
+        <div className="mt-3 flex gap-3">
+          <div className="flex-1 rounded-xl bg-slate-800/60 p-3 text-center">
+            <p className="text-xs text-slate-500 mb-0.5">Dernière</p>
+            <p className="text-base font-bold text-white">{formatInterval(lastInterval)}</p>
+          </div>
+          {avgInterval !== null && (
+            <div
+              className={`flex-1 rounded-xl p-3 text-center ${
+                isUrgent ? 'bg-cyan-500/15 border border-cyan-500/30' : 'bg-slate-800/60'
+              }`}
+            >
+              <p className={`text-xs mb-0.5 ${isUrgent ? 'text-cyan-400' : 'text-slate-500'}`}>
+                Moyenne
+              </p>
+              <p className={`text-base font-bold ${isUrgent ? 'text-cyan-300' : 'text-white'}`}>
+                {formatInterval(avgInterval)}
+              </p>
+            </div>
+          )}
+        </div>
+      )}
+
+      {isUrgent && (
+        <p className="mt-2 text-xs text-cyan-400 text-center font-medium">
+          Toutes les ~5 min → il est temps de partir !
+        </p>
+      )}
+
+      {intervals.length >= 2 && (
+        <div className="mt-3 flex flex-wrap gap-1.5 justify-center">
+          {intervals.slice(-5).map((iv, i) => (
+            <span key={i} className="text-xs px-2 py-0.5 rounded-full bg-slate-700/60 text-slate-400">
+              {formatInterval(iv)}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {taps.length > 0 && (
+        <button
+          onClick={() => setTaps([])}
+          className="mt-3 w-full text-xs text-slate-600 hover:text-slate-400 transition-colors py-1"
+        >
+          Réinitialiser
+        </button>
+      )}
+    </div>
+  )
+}
+
 const QUICK_CHECKS = [
   'Sac dans la voiture',
   'GPS programmé vers la maternité',
@@ -168,7 +264,15 @@ export default function EnDirect({ onBack }) {
           )}
         </div>
 
-        {/* Bloc 2 — Checklist rapide */}
+        {/* Bloc 2 — Contractions */}
+        <div>
+          <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3 px-1">
+            Contractions
+          </p>
+          <ContractionCounter />
+        </div>
+
+        {/* Bloc 4 — Checklist rapide */}
         <div>
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3 px-1">
             À cocher
@@ -195,7 +299,7 @@ export default function EnDirect({ onBack }) {
           </div>
         </div>
 
-        {/* Bloc 3 — Aide rapide */}
+        {/* Bloc 5 — Aide rapide */}
         <div>
           <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-3 px-1">
             Aide rapide
