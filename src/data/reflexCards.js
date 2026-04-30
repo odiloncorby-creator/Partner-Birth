@@ -1,5 +1,12 @@
 export const REFLEX_CARDS = [
   {
+    id: 'urgence-domicile',
+    icon: 'Home',
+    title: 'Accouchement inopiné',
+    instruction: 'Appeler le 18 — ne rien tenter — ne pas couper le cordon.',
+    detail: 'Prépare des serviettes et couvertures, idéalement réchauffées sur un radiateur. Bébé directement sur le ventre de maman, couvrir tous les deux. Les secours gèrent le reste — ton rôle : être là et maintenir chaud.',
+  },
+  {
     id: 'souffle-miroir',
     icon: 'Wind',
     title: 'Souffle miroir',
@@ -40,13 +47,6 @@ export const REFLEX_CARDS = [
     title: 'Mots d\'ancrage',
     instruction: 'Voix grave, phrases courtes, affirmatives.',
     detail: '"Expire." · "Relâche." · "C\'est bien." · "On y est." — Évite "Ça va ?" (elle devrait répondre). Préfère constater : "Je suis là."',
-  },
-  {
-    id: 'urgence-domicile',
-    icon: 'Home',
-    title: 'Accouchement domicile',
-    instruction: 'Laisser faire — ne pas couper le cordon — appeler les secours.',
-    detail: 'Serviettes propres · bébé sur le ventre de maman · sécuriser le bord du lit · appeler pompiers (18) ou SAMU (15) dès la poussée. Ne rien couper, les secours s\'en occupent.',
   },
   {
     id: 'urgence',

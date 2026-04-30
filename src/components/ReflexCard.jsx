@@ -8,6 +8,7 @@ const ICON_COLORS = {
   Brain: 'bg-indigo-500/20 text-indigo-300',
   MessageCircle: 'bg-cyan-500/20 text-cyan-300',
   AlertTriangle: 'bg-red-500/20 text-red-400',
+  Home: 'bg-orange-500/20 text-orange-300',
 }
 
 export default function ReflexCard({ card }) {
